@@ -70,6 +70,20 @@ application.post('/mahasiswa', (req, res) => {
   });
 });
 
+//get
+application.get('/mahasiswa', (req, res) => {
+  const query = 'SELECT * FROM biodata';
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error('❌ Error fetching data: ', err);
+      res.status(500).send('Terjadi kesalahan pada server');
+      return;
+    }
+    res.json(results);
+  });
+});
+
+
 application.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}/`);
 });
